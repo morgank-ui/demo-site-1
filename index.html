@@ -24,7 +24,25 @@
       <a class="button" href="#work">Explore my work <span aria-hidden="true">↗</span></a>
       <div class="orb orb-one"></div><div class="orb orb-two"></div>
     </section>
-    <section class="section about" id="about">
+    <section class="section tracker-section" id="laptop-time">
+      <div class="tracker-card">
+        <div class="tracker-heading">
+          <div><p class="eyebrow">LAPTOP SESSION</p><h2>Keep track of your time</h2></div>
+          <span class="tracker-status" id="session-status" aria-live="polite">Ready when you are</span>
+        </div>
+        <p class="tracker-copy">Start when you begin and finish when you’re done. You’ll get a desktop reminder every hour while this page is open.</p>
+        <div class="tracker-clock" id="elapsed-time" role="timer" aria-live="off">00:00:00</div>
+        <div class="tracker-details">
+          <p><span>Started</span><strong id="started-at">—</strong></p>
+          <p><span>Finished</span><strong id="finished-at">—</strong></p>
+        </div>
+        <div class="tracker-actions">
+          <button class="button tracker-button" id="start-session" type="button">Start session</button>
+          <button class="button tracker-button tracker-finish" id="finish-session" type="button" disabled>Finish session</button>
+        </div>
+        <p class="notification-note" id="notification-note" aria-live="polite">Allow notifications when your browser asks so hourly reminders can appear in your PC notification area.</p>
+      </div>
+    </section>    <section class="section about" id="about">
       <p class="eyebrow">A LITTLE ABOUT ME</p>
       <h2>Curious by nature.<br>Thoughtful by design.</h2>
       <p>I like learning new things, solving interesting problems, and working with people who care about what they make. When I’m not working, you might find me exploring a new place or enjoying a good book.</p>
@@ -40,5 +58,7 @@
     <section class="contact" id="contact"><p class="eyebrow">SAY HELLO</p><h2>Have something in mind?</h2><p>I’d love to hear from you.</p><a class="button button-light" href="mailto:hello@example.com">Send me an email <span aria-hidden="true">↗</span></a></section>
   </main>
   <footer><span>© 2026 Alex Morgan</span><a href="#home">Back to top ↑</a></footer>
+  <script src="session.js" defer></script>
 </body>
 </html>
+
