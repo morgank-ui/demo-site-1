@@ -30,15 +30,16 @@
           <div><p class="eyebrow">LAPTOP SESSION</p><h2>Keep track of your time</h2></div>
           <span class="tracker-status" id="session-status" aria-live="polite">Ready when you are</span>
         </div>
-        <p class="tracker-copy">Start when you begin and finish when you’re done. You’ll get a desktop reminder every hour while this page is open.</p>
+        <p class="tracker-copy">Your session starts automatically when you open this page. Finish it when you are done. Hourly desktop reminders require notification permission.</p>
         <div class="tracker-clock" id="elapsed-time" role="timer" aria-live="off">00:00:00</div>
         <div class="tracker-details">
           <p><span>Started</span><strong id="started-at">—</strong></p>
           <p><span>Finished</span><strong id="finished-at">—</strong></p>
         </div>
         <div class="tracker-actions">
-          <button class="button tracker-button" id="start-session" type="button">Start session</button>
-          <button class="button tracker-button tracker-finish" id="finish-session" type="button" disabled>Finish session</button>
+          <button class="button tracker-button tracker-finish" id="finish-session" type="button">Finish session</button>
+          <button class="button tracker-button" id="start-session" type="button" hidden>Start a new session</button>
+          <button class="button tracker-button tracker-notifications" id="enable-notifications" type="button">Enable hourly notifications</button>
         </div>
         <p class="notification-note" id="notification-note" aria-live="polite">Allow notifications when your browser asks so hourly reminders can appear in your PC notification area.</p>
       </div>
@@ -61,4 +62,6 @@
   <script src="session.js" defer></script>
 </body>
 </html>
+
+
 

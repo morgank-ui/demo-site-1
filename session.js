@@ -8,8 +8,7 @@
   const noteEl = document.querySelector("#notification-note");
   const startButton = document.querySelector("#start-session");
   const finishButton = document.querySelector("#finish-session");
-
-  let session = readSession();
+  const notificationsButton = document.querySelector("#enable-notifications");
 
   function readSession() {
     try {
@@ -21,6 +20,12 @@
 
   function saveSession() {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(session));
+  }
+
+  let session = readSession();
+  if (!session || session.finishedAt) {
+    session = { startedAt: Date.now(), finishedAt: null, notifiedHours: 0 };
+    saveSession();
   }
 
   function formatTime(timestamp) {
@@ -41,22 +46,27 @@
       .join(":");
   }
 
-  function requestNotifications() {
+  async function requestNotifications() {
     if (!("Notification" in window)) {
       noteEl.textContent = "This browser does not support desktop notifications. Your session time will still be recorded.";
-      return Promise.resolve(false);
+      return false;
     }
-    if (Notification.permission === "granted") return Promise.resolve(true);
+    if (Notification.permission === "granted") {
+      noteEl.textContent = "Hourly desktop notifications are enabled.";
+      return true;
+    }
     if (Notification.permission === "denied") {
       noteEl.textContent = "Notifications are blocked. Allow them for this site in your browser settings to receive hourly reminders.";
-      return Promise.resolve(false);
+      return false;
     }
-    return Notification.requestPermission().then(permission => {
-      if (permission !== "granted") {
-        noteEl.textContent = "Notifications are off. You can allow them for this site in your browser settings.";
-      }
-      return permission === "granted";
-    });
+    const permission = await Notification.requestPermission();
+    if (permission === "granted") {
+      noteEl.textContent = "Hourly desktop notifications are enabled.";
+      notificationsButton.textContent = "Notifications enabled";
+      return true;
+    }
+    noteEl.textContent = "Notifications are off. You can allow them for this site in your browser settings.";
+    return false;
   }
 
   function notifyElapsedHour(hours) {
@@ -72,14 +82,16 @@
     const running = Boolean(session && !session.finishedAt);
     const end = running ? Date.now() : session?.finishedAt;
     const elapsed = session ? end - session.startedAt : 0;
+    const permissionGranted = "Notification" in window && Notification.permission === "granted";
 
     elapsedEl.textContent = formatDuration(elapsed);
     startedEl.textContent = formatTime(session?.startedAt);
     finishedEl.textContent = formatTime(session?.finishedAt);
-    statusEl.textContent = running ? "Session in progress" : session?.finishedAt ? "Session complete" : "Ready when you are";
-    startButton.disabled = running;
-    startButton.textContent = session?.finishedAt ? "Start a new session" : "Start session";
+    statusEl.textContent = running ? "Session in progress" : "Session complete";
+    startButton.hidden = running;
     finishButton.disabled = !running;
+    notificationsButton.textContent = permissionGranted ? "Notifications enabled" : "Enable hourly notifications";
+    notificationsButton.disabled = permissionGranted;
 
     if (running) {
       const hoursElapsed = Math.floor(elapsed / HOUR_MS);
@@ -91,8 +103,7 @@
     }
   }
 
-  startButton.addEventListener("click", async () => {
-    await requestNotifications();
+  startButton.addEventListener("click", () => {
     session = { startedAt: Date.now(), finishedAt: null, notifiedHours: 0 };
     saveSession();
     update();
@@ -104,6 +115,8 @@
     saveSession();
     update();
   });
+
+  notificationsButton.addEventListener("click", requestNotifications);
 
   if (!("Notification" in window)) {
     noteEl.textContent = "This browser does not support desktop notifications. Your session time will still be recorded.";
