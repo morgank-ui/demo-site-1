@@ -3,65 +3,82 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="A personal website introducing me and my work.">
-  <title>Alex Morgan — Personal Website</title>
+  <meta name="description" content="Time Tracker — welcome to tech. Track laptop sessions, breaks, and totals.">
+  <title>Time Tracker — Welcome to tech</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="wordmark" href="#home">AM<span>.</span></a>
+    <a class="wordmark" href="#home">TT<span>.</span></a>
     <nav aria-label="Main navigation">
       <a href="#about">About</a>
-      <a href="#work">Work</a>
-      <a href="#contact">Contact</a>
+      <a href="#laptop-time">Time tracker</a>
+      <a href="#work">Projects</a>
     </nav>
   </header>
   <main>
     <section class="hero" id="home">
-      <p class="eyebrow">HELLO, I'M ALEX MORGAN</p>
-      <h1>Making useful things<br><span>with care.</span></h1>
-      <p class="intro">I’m a curious creative who enjoys turning good ideas into thoughtful work. This is a little corner of the internet to share what I do.</p>
-      <a class="button" href="#work">Explore my work <span aria-hidden="true">↗</span></a>
+      <p class="eyebrow">TIME TRACKER</p>
+      <h1>Welcome<br><span>to tech.</span></h1>
+      <p class="intro">A personal space for technology, projects, and keeping track of laptop sessions.</p>
+      <a class="button" href="#laptop-time">Track my time <span aria-hidden="true">↗</span></a>
       <div class="orb orb-one"></div><div class="orb orb-two"></div>
     </section>
     <section class="section tracker-section" id="laptop-time">
       <div class="tracker-card">
         <div class="tracker-heading">
           <div><p class="eyebrow">LAPTOP SESSION</p><h2>Keep track of your time</h2></div>
-          <span class="tracker-status" id="session-status" aria-live="polite">Ready when you are</span>
+          <span class="tracker-status" id="session-status" aria-live="polite">Starting…</span>
         </div>
-        <p class="tracker-copy">Your session starts automatically when you open this page. Finish it when you are done. Hourly desktop reminders require notification permission.</p>
+        <p class="tracker-copy">A session starts automatically when you open this page. Pause for breaks and finish when you are done. The timer counts only while this page is running, and pauses when your laptop sleeps or the page is closed for a while.</p>
         <div class="tracker-clock" id="elapsed-time" role="timer" aria-live="off">00:00:00</div>
         <div class="tracker-details">
           <p><span>Started</span><strong id="started-at">—</strong></p>
           <p><span>Finished</span><strong id="finished-at">—</strong></p>
         </div>
+        <div class="tracker-summary">
+          <div><span>Today</span><strong id="today-total">00:00:00</strong></div>
+          <div><span>This week</span><strong id="week-total">00:00:00</strong></div>
+        </div>
         <div class="tracker-actions">
+          <button class="button tracker-button tracker-pause" id="pause-session" type="button">Pause for a break</button>
+          <button class="button tracker-button tracker-resume" id="resume-session" type="button" hidden>Resume session</button>
           <button class="button tracker-button tracker-finish" id="finish-session" type="button">Finish session</button>
           <button class="button tracker-button" id="start-session" type="button" hidden>Start a new session</button>
           <button class="button tracker-button tracker-notifications" id="enable-notifications" type="button">Enable hourly notifications</button>
         </div>
-        <p class="notification-note" id="notification-note" aria-live="polite">Allow notifications when your browser asks so hourly reminders can appear in your PC notification area.</p>
+        <p class="notification-note" id="notification-note" aria-live="polite">Allow notifications to receive hourly reminders while this page is open.</p>
       </div>
-    </section>    <section class="section about" id="about">
-      <p class="eyebrow">A LITTLE ABOUT ME</p>
-      <h2>Curious by nature.<br>Thoughtful by design.</h2>
-      <p>I like learning new things, solving interesting problems, and working with people who care about what they make. When I’m not working, you might find me exploring a new place or enjoying a good book.</p>
+      <div class="history-card">
+        <div class="history-heading">
+          <div><p class="eyebrow">YOUR RECORDS</p><h2>Session history</h2></div>
+          <button class="button tracker-button export-button" id="export-sessions" type="button">Export CSV</button>
+        </div>
+        <div class="table-wrap">
+          <table class="session-table">
+            <thead><tr><th>Started</th><th>Finished</th><th>Tracked time</th><th>Status</th></tr></thead>
+            <tbody id="session-history"></tbody>
+          </table>
+          <p class="empty-history" id="empty-history" hidden>Your finished and paused sessions will appear here.</p>
+        </div>
+      </div>
+    </section>
+    <section class="section about" id="about">
+      <p class="eyebrow">ABOUT THIS SITE</p>
+      <h2>Time Tracker</h2>
+      <p>Welcome to tech. This site keeps a private session log in this browser, with daily and weekly totals and downloadable records.</p>
     </section>
     <section class="section work" id="work">
-      <div class="section-heading"><div><p class="eyebrow">SELECTED HIGHLIGHTS</p><h2>Things I’ve made</h2></div><p>A few projects and interests I’m proud of.</p></div>
+      <div class="section-heading"><div><p class="eyebrow">YOUR WORK</p><h2>Projects and skills</h2></div><p>Add your real projects and skills here as you build them.</p></div>
       <div class="cards">
-        <article class="card card-peach"><span>01 / PROJECT</span><h3>A project I care about</h3><p>A short description of something meaningful you’ve created.</p></article>
-        <article class="card card-lilac"><span>02 / INTEREST</span><h3>Always learning</h3><p>A topic, skill, or idea that keeps you curious.</p></article>
-        <article class="card card-green"><span>03 / MOMENT</span><h3>Good things together</h3><p>A collaboration or experience worth remembering.</p></article>
+        <article class="card card-peach"><span>01 / INTEREST</span><h3>Technology</h3><p>Welcome to tech — add the topics you enjoy exploring.</p></article>
+        <article class="card card-lilac"><span>02 / SKILLS</span><h3>Skills I’m building</h3><p>Update this card with skills you want to share.</p></article>
+        <article class="card card-green"><span>03 / PROJECT</span><h3>Projects coming soon</h3><p>Add a project name and a short description when you’re ready.</p></article>
       </div>
     </section>
-    <section class="contact" id="contact"><p class="eyebrow">SAY HELLO</p><h2>Have something in mind?</h2><p>I’d love to hear from you.</p><a class="button button-light" href="mailto:hello@example.com">Send me an email <span aria-hidden="true">↗</span></a></section>
+    <section class="contact" id="contact"><p class="eyebrow">SAY HELLO</p><h2>Get in touch</h2><p>Add a contact link or email address when you are ready.</p></section>
   </main>
-  <footer><span>© 2026 Alex Morgan</span><a href="#home">Back to top ↑</a></footer>
+  <footer><span>© 2026 Time Tracker</span><a href="#home">Back to top ↑</a></footer>
   <script src="session.js" defer></script>
 </body>
 </html>
-
-
-
