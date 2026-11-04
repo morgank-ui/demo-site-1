@@ -1,14 +1,12 @@
 # Time Tracker
 
-A personal website and browser-based laptop session tracker. Open `index.html` in a browser to preview it.
+A personal website named Time Tracker with the bio “Welcome to tech.” It includes session history, daily and weekly totals, a configurable daily goal, a weekly chart, session labels and notes, CSV export/import, and break controls.
 
-## Session tracking
-
-- A session starts when the site opens if no session is already running or paused.
-- Pause for breaks to exclude them from tracked time. Resume and Finish are available in the tracker.
-- Session history, daily totals, and weekly totals are stored locally in this browser. Use **Export CSV** to download the records.
+- Sessions start when the site opens if no session is already running or paused.
+- Pause to exclude breaks. Resume and Finish are available in the tracker.
+- Session history and daily totals are saved in this browser. The daily goal is saved with them.
+- Export CSV downloads a backup. Import CSV merges it with existing history and skips duplicate session IDs.
 - Enable browser notifications for hourly reminders. Keep the page open for notifications.
-- The browser timer counts only while its page can run. Long gaps, such as sleep or the browser being closed, are skipped; this is an approximation and does not track all Windows uptime. A native Windows app is needed to track powered-on time independently of the website.
-- Older single-session data is kept as an older record because its previous elapsed time included time while the laptop may have slept.
+- The browser timer skips long gaps such as laptop sleep or a closed page. This is a browser approximation, not a Windows uptime monitor.
 
-Profile text currently uses **Welcome to tech** as the bio/theme. Add real project, skill, and contact details in `index.html` when ready.
+The profile describes the owner as still learning. Replace or expand project, skill, and contact details in `index.html` whenever you are ready.
